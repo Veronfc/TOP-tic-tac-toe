@@ -1,13 +1,34 @@
+const board = document.getElementById('board')
+
 const gameboard = () => {
-  const gameboard = []
-  return {}
+  const gameboard = ['','','','','','','','','']
+
+  const display = () => {
+    board.innerHTML = ''
+    gameboard.forEach((index) => {
+      let square = document.createElement('div')
+      square.className = 'square'
+      square.innerText = index
+      board.appendChild(square)
+    })
+  }
+
+  return {gameboard, display}
 }
+
+current = gameboard()
+current.display()
 
 const player = () => {
   return {}
 }
 
 const play = (() => {
+  const mark = (index, marker) => {
+    if (current.gameboard[index] == '') {
+      current.gameboard[index] = marker
+    }
+  }
   return {}
 })();
 

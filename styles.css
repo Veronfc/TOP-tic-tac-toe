@@ -1,33 +1,57 @@
-@import url('https://fonts.cdnfonts.com/css/movistar-text');
+@import url('https://fonts.cdnfonts.com/css/phobia-night');
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Movistar Text';
+  font-family: 'Phobia Night';
 }
 
 body {
+  background-color: rgb(240,240,240);
   height: 100vh;
   width: 100vw;
   display: grid;
   align-items: center;
   justify-items: center;
+  grid-template-columns: 1fr 60% 1fr;
+  grid-template-rows: 1fr 80%;
+  column-gap: 20px;
 }
 
 .header {
-  font-size: 4rem;
+  color: black;
+  grid-area: 1/2/2/3;
+  font-size: 1rem;
   transition: 0.5s;
-  transform: translateX(-100vw) skewX(30deg);
+  transform: translateX(-60vw) skewX(30deg);
 }
 
-.board {
+#board {
+  background-color: rgb(230,230,230);
+  border-radius: 80px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgb(180,180,180);
+  grid-area: 2/2/3/3;
   align-self: start;
   display: grid;
-  grid-template: repeat(3, 150px)/repeat(3,150px);
-  gap: 10px;
+  grid-template: repeat(3, 150px) / repeat(3, 150px);
+  gap: 15px;
 }
 
 .square {
-  border: 1px solid hsl(0, 0%, 70%);
+  font-size: 6rem;
+  border: 1px solid rgb(180,180,180);
   border-radius: 80px;
+  background-color: rgb(240,240,240);
+  transition: 0.3s;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square:hover {
+  transform: scale(1.05);
+  background-color: rgb(220,220,220)
 }
