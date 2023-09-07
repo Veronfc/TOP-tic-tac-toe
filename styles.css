@@ -23,7 +23,7 @@ body {
   grid-area: 1/2/2/3;
   font-size: 4rem;
   transition: 0.5s;
-  transform: translateX(-60vw) skewX(30deg);
+  transform: translateX(-100vw) skewX(30deg);
 }
 
 #board {
