@@ -1,38 +1,45 @@
 const board = document.getElementById('board')
 
-const gameboard = () => {
-  const gameboard = ['','','','','','','','','']
+const game = () => {
+  const board = ['','','','','','','','','']
+  const players = []
+
+  const player = (marker) => {
+    return {marker}
+  }
 
   const display = () => {
     board.innerHTML = ''
-    gameboard.forEach((index) => {
+    board.forEach((mark, index) => {
       let square = document.createElement('div')
       square.className = 'square'
-      square.innerText = index
+      square.innerText = mark
+      square.onclick = function() {play(index, currentPlayer)}
       board.appendChild(square)
     })
   }
 
-  return {gameboard, display}
-}
-
-current = gameboard()
-current.display()
-
-const player = () => {
-  return {}
-}
-
-const play = (() => {
-  const mark = (index, marker) => {
-    if (current.gameboard[index] == '') {
-      current.gameboard[index] = marker
+  const play = (index, player) => {
+    if (board[index] == '') {
+      board[index] = player.marker
+      display()
     }
   }
-  return {}
-})();
+
+  const check_winner = () => {
+    
+  }
+
+  return {player, players, display}
+}
+
+current = game()
+current.players.push(current.player('X'))
+current.players.push(current.player('O'))
+let currentPlayer = current.players[1]
+current.display()
 
 setTimeout(() => {
   const header = document.querySelector('.header')
   header.style.transform = 'translateX(0px)'
-}, 1000)
+}, 500)
