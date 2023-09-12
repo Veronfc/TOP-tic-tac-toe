@@ -14,7 +14,7 @@ body {
   align-items: center;
   justify-items: center;
   grid-template-columns: 1fr 60% 1fr;
-  grid-template-rows: 1fr 80%;
+  grid-template-rows: 1fr 540px 1fr;
   column-gap: 20px;
 }
 
@@ -55,4 +55,29 @@ body {
 .square:hover {
   transform: scale(1.05);
   background-color: rgb(220,220,220)
+}
+
+.start {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 560px;
+  width: 100vw;
+  background-color: rgb(230,230,230);
+  box-shadow: 0 0 10px rgb(180,180,180);
+
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.markx, .marko {
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.markx:hover, .marko:hover {
+  transform: scale(2);
 }

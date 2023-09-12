@@ -19,41 +19,43 @@ const game = () => {
     })
   }
 
-  const play = (index, player) => {
+  const play = (index) => {
     if (board[index] == '') {
-      board[index] = player.marker
+      board[index] = currentPlayer.marker
       display()
-      check_winner(player)
+
+      setTimeout(() => {
+        check_winner()
+      }, 500)
     }
   }
 
-  const check_winner = (player) => {
+  const check_winner = () => {
     /*win cases 012-036-048-147-246-258-345-678*/
     let win = false
 
     for (let i = 0; i < 9; i++) {
-      let mark = board[i].marker
-      if (mark == player.marker) {
-        alert('match')
-        if (i == 0 && (mark == board[1].marker && mark == board[2].marker ||
-          mark == board[3].marker && mark == board[6].marker ||
-          mark == board[4].marker && mark == board[8].marker)) {
+      let mark = board[i]
+      if (mark == currentPlayer.marker) {
+        if (i == 0 && (mark == board[1] && mark == board[2] ||
+          mark == board[3] && mark == board[6] ||
+          mark == board[4] && mark == board[8])) {
           win = true
           break
         } 
-        else if (i == 1 && (mark == board[4].marker && mark == board[7].marker)) {
+        else if (i == 1 && (mark == board[4] && mark == board[7])) {
           win = true
           break
         }
-        else if (i == 2 && (mark == board[4].marker && mark == board[6].marker || mark == board[5].marker && mark == board[8].marker)) {
+        else if (i == 2 && (mark == board[4] && mark == board[6] || mark == board[5] && mark == board[8])) {
           win = true
           break
         }
-        else if (i == 3 && (mark == board[4].marker && mark == board[5].marker)) {
+        else if (i == 3 && (mark == board[4] && mark == board[5])) {
           win = true
           break
         }
-        else if (i == 6 && (mark == board[7].marker && mark == board[8].marker)) {
+        else if (i == 6 && (mark == board[7] && mark == board[8])) {
           win = true
           break
         }
@@ -63,8 +65,15 @@ const game = () => {
     }
 
     if (win) {
-      alert('you won')
+      alert(`Player ${currentPlayer.marker} is the winner!`)
+
+      board.forEach((marker, index) => {
+        board[index] = ''
+        display()
+      })
     }
+
+    currentPlayer == current.players[0] ? currentPlayer = current.players[1] : currentPlayer = current.players[0]
   }
 
   return {player, players, display, board}
