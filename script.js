@@ -1,4 +1,7 @@
 const gameboard = document.getElementById('board')
+start = document.querySelector('.start')
+winner = document.querySelector('.winner')
+turn = document.querySelector('.turn')
 
 const game = () => {
   const board = ['','','','','','','','','']
@@ -14,6 +17,13 @@ const game = () => {
       let square = document.createElement('div')
       square.className = 'square'
       square.innerText = mark
+      if (mark == 'X') {
+        square.style.backgroundColor = 'red'
+      }
+      else if (mark == 'O') {
+        square.style.backgroundColor = 'blue'
+      }
+      else {square.style.backgroundColor = 'rgb(240,240,240)'}
       square.onclick = function() {play(index, currentPlayer)}
       gameboard.appendChild(square)
     })
@@ -65,15 +75,30 @@ const game = () => {
     }
 
     if (win) {
-      alert(`Player ${currentPlayer.marker} is the winner!`)
+      winner.innerText = `Player ${currentPlayer.marker} has won`
+      winner.style.transform = 'translate(-50%, -50%)'
+      
+      setTimeout(() => {
+        winner.style.transform = 'translate(100%, -50%)'
+        start.style.transform = 'translate(-50%, -50%)'
+      },1500)
 
       board.forEach((marker, index) => {
         board[index] = ''
         display()
       })
+      return
     }
 
-    currentPlayer == current.players[0] ? currentPlayer = current.players[1] : currentPlayer = current.players[0]
+
+    if (currentPlayer == current.players[0]) {
+      currentPlayer = current.players[1]
+      turn.innerText = 'Its your turn Player O'
+    }
+    else {
+      currentPlayer = current.players[0]
+      turn.innerText = 'Its your turn Player X'
+    }
   }
 
   return {player, players, display, board}
@@ -82,10 +107,13 @@ const game = () => {
 current = game()
 current.players.push(current.player('X'))
 current.players.push(current.player('O'))
-let currentPlayer = current.players[0]
 current.display()
 
+function setPlayer(element) {
+  start.style.transform = 'translate(-200%, -50%)'
+  current.players[0].marker == element.innerText ? currentPlayer = current.players[0] : currentPlayer = current.players[1]
+}
+
 setTimeout(() => {
-  const header = document.querySelector('.header')
-  header.style.transform = 'translateX(0px)'
+  start.style.transform = 'translate(-50%, -50%)'
 }, 500)

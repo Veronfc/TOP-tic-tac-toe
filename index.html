@@ -7,14 +7,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="header"></div>
+  <div class="turn"></div>
   <div id="board"></div>
   <div class="start">
-    <div>
-      <div class="markx">X</div>s
+    <div class="start-container">
+      <div class="markx" title="You will be Player X" onclick="setPlayer(this)">X</div>s
       <span>and</span>
-      <div class="marko">O</div>s
+      <div class="marko" title="You will be Player O" onclick="setPlayer(this)">O</div>s
     </div>
+    <div title="Click on either above">CHOOSE YOUR MARK</div>
   </div>
+  <div class="winner"></div>
 </body>
 </html>
