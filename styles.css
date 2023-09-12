@@ -28,7 +28,7 @@ body {
 
 #board {
   background-color: rgb(230,230,230);
-  border-radius: 40px;
+  border-radius: 20px;
   padding: 30px;
   box-shadow: 0 0 10px rgb(180,180,180);
   grid-area: 2/2/3/3;
@@ -41,7 +41,7 @@ body {
 .square {
   font-size: 7rem;
   border: 1px solid rgb(180,180,180);
-  border-radius: 40px;
+  border-radius: 20px;
   background-color: rgb(240,240,240);
   color: white;
   transition: 0.3s;
@@ -54,8 +54,7 @@ body {
 }
 
 .square:hover {
-  transform: scale(1.05);
-  background-color: rgb(220,220,220)
+  transform: scale(1.1);
 }
 
 .start {
