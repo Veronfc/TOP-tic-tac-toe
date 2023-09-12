@@ -43,9 +43,15 @@ const game = () => {
   const check_winner = () => {
     /*win cases 012-036-048-147-246-258-345-678*/
     let win = false
+    let tie = 0
 
     for (let i = 0; i < 9; i++) {
       let mark = board[i]
+
+      if (mark != '') {
+        tie++
+      }
+
       if (mark == currentPlayer.marker) {
         if (i == 0 && (mark == board[1] && mark == board[2] ||
           mark == board[3] && mark == board[6] ||
@@ -87,9 +93,22 @@ const game = () => {
         board[index] = ''
         display()
       })
-      return
     }
 
+    if (!win && tie == 9) {
+      winner.innerText = 'Draw'
+      winner.style.transform = 'translate(-50%, -50%)'
+      
+      setTimeout(() => {
+        winner.style.transform = 'translate(100%, -50%)'
+        start.style.transform = 'translate(-50%, -50%)'
+      },1500)
+
+      board.forEach((marker, index) => {
+        board[index] = ''
+        display()
+      })
+    }
 
     if (currentPlayer == current.players[0]) {
       currentPlayer = current.players[1]
@@ -98,6 +117,10 @@ const game = () => {
     else {
       currentPlayer = current.players[0]
       turn.innerText = 'Its your turn Player X'
+    }
+    
+    if (win || tie == 9) {
+      turn.innerText = ''
     }
   }
 
