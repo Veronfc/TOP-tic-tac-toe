@@ -33,13 +33,10 @@ const game = () => {
     if (board[index] == '') {
       board[index] = currentPlayer.marker
       display()
-
-      setTimeout(() => {
-        check_winner()
-      }, 500)
+      check_winner()
     }
   }
-
+  
   const check_winner = () => {
     /*win cases 012-036-048-147-246-258-345-678*/
     let win = false
