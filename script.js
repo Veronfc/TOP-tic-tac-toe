@@ -27,13 +27,14 @@ const game = () => {
     }
   }
 
-  const check_winner = () => {
+  const check_winner = (player) => {
     /*win cases 012-036-048-147-246-258-345-678*/
     let win = false
 
-    for (let i = 0; i < board.length; i++) {
+    for (let i = 0; i < 9; i++) {
       let mark = board[i].marker
-      if (mark != '') {
+      if (mark == player.marker) {
+        alert('match')
         if (i == 0 && (mark == board[1].marker && mark == board[2].marker ||
           mark == board[3].marker && mark == board[6].marker ||
           mark == board[4].marker && mark == board[8].marker)) {
@@ -58,6 +59,7 @@ const game = () => {
         }
         else {win = false}
       }
+      else {win = false}
     }
 
     if (win) {
@@ -65,13 +67,13 @@ const game = () => {
     }
   }
 
-  return {player, players, display}
+  return {player, players, display, board}
 }
 
 current = game()
 current.players.push(current.player('X'))
 current.players.push(current.player('O'))
-let currentPlayer = current.players[1]
+let currentPlayer = current.players[0]
 current.display()
 
 setTimeout(() => {
